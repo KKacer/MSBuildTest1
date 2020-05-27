@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <!-- default values -->
+    <HelloProp Condition=" '$(Hello)' == '' ">Hello MHM</HelloProp>
+  </PropertyGroup>
+
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <!-- Step1: moving scss or css files that are declared together with razor components to the static asset folder (usually wwwroot) -->
+    <Message Text="MHM- Copying from $(OutputPath) -- $(Hello)" Importance="high" />
+    <Message Text="MHM- $(OutputPath)..\$(PackageId).$(PackageVersion).nupkg --" Importance="high" />
+    <Copy
+      SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg"
+      DestinationFolder="D:\"
+    />
+  </Target>
+</Project>
